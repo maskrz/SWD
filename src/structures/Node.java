@@ -34,14 +34,15 @@ public class Node {
         return index;
     }
 
-    public void addNeighbour(Node node, HashMap<String, Double> linkValues) {
+    public void createNeighbourhood(Node node, HashMap<String, Double> linkValues) {
         createLinkIfNotExist(node, linkValues);
     }
 
-    public void addNeighbour(Node node, Link link) {
+    public void createNeighbourhood(Node node, Link link) {
         if(!isNeighbourWith(node.getIndex())) {
-            neighbours.add(node);
-            links.add(link);
+            this.addNeighbour(node);
+            node.addNeighbour(this);
+            addLink(link);
         }
     }
 
@@ -83,8 +84,12 @@ public class Node {
 
     private void createNewLink(Node node, HashMap<String, Double> linkValues) {
         Link link = new Link(this, node, linkValues);
-        this.addNeighbour(node, link);
-        node.addNeighbour(this, link);
+        this.createNeighbourhood(node, link);
+        node.createNeighbourhood(this, link);
+    }
+
+    private void addNeighbour(Node node) {
+        neighbours.add(node);
     }
 
     private void addLink(Link link) {

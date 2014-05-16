@@ -6,7 +6,9 @@
 
 package structures;
 
+import helpers.GraphReader;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -15,13 +17,15 @@ import java.util.ArrayList;
 public class Graph {
     private ArrayList<Node> nodes;
     private ArrayList<Link> links;
+    private Criteria criteria;
+    private Scanner scanner;
 
-    public Graph(String datas) {
-        createGraphFromString(datas);
-    }
-
-    private void createGraphFromString(String datas) {
-        
+    public Graph(String data) {
+        nodes = new ArrayList();
+        links = new ArrayList();
+        criteria = new Criteria();
+        GraphReader graphReader = new GraphReader(this);
+        graphReader.createGraphFromString(data);
     }
 
     public ArrayList<Link> getLinks() {
@@ -46,5 +50,22 @@ public class Graph {
                 return node;
         }
         return null;
+    }
+
+    public void addCrtieria(String criteria) {
+        this.criteria.addCrtieria(criteria);
+    }
+
+    public void addNode(Node node) {
+        this.nodes.add(node);
+    }
+
+    public void addLink(Link link) {
+        links.add(link);
+        linkNodes(link);
+    }
+
+    private void linkNodes(Link link) {
+        link.getNodes().get(0).createNeighbourhood(link.getNodes().get(1), link);
     }
 }

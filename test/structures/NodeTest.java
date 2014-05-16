@@ -31,7 +31,7 @@ public class NodeTest {
         HashMap<String, Double> values = new HashMap();
         values.put("TIME", 5.0);
         values.put("DISTANCE", 1.0);
-        node1.addNeighbour(node2, values);
+        node1.createNeighbourhood(node2, values);
 
     }
 
