@@ -19,8 +19,8 @@ public class Link {
     private HashMap<String, Double> linkValues;
 
     public Link(Node n1, Node n2, HashMap<String, Double> linkValues) {
-        firstNode = n1;
-        secondNode = n2;
+        firstNode = n1.getIndex() < n2.getIndex()? n1 : n2;
+        secondNode = n1.getIndex() > n2.getIndex()? n1 : n2;
         this.linkValues = linkValues;
     }
 

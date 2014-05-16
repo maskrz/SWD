@@ -76,6 +76,10 @@ public class Node {
         return false;
     }
 
+    public boolean isNeighbourWith(Node node) {
+        return isNeighbourWith(node.getIndex());
+    }
+
     private void createLinkIfNotExist(Node node, HashMap<String, Double> linkValues) {
         if(!this.isNeighbourWith(node.getIndex())) {
             createNewLink(node, linkValues);
