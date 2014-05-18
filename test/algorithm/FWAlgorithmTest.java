@@ -7,6 +7,12 @@
 package algorithm;
 
 import helpers.GraphReader;
+import helpers.OutputProcessor;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -21,6 +27,9 @@ public class FWAlgorithmTest {
     String newLine;
     Graph g;
     GraphReader gr;
+    String source = "test1.txt";
+    final String testPath = "test/";
+    final String testCriteria = "TIME";
     public FWAlgorithmTest() {
         newLine = System.getProperty("line.separator");
         g = new Graph(createTestInput());
@@ -68,37 +77,50 @@ public class FWAlgorithmTest {
         FWAlgorithm fwa = new FWAlgorithm(g.getNodes().size(), g);
         fwa.doAlgorithm();
         OutputProcessor op = fwa.getOutputProcessor();
-        int[] path = op.getPath(1, 5);
-        System.out.println(op.getResult(1, 5));
+        op.showResults(testCriteria);
+        int[] path = op.getPath(testCriteria, 1, 5);
+        
+        System.out.println(op.getResult(testCriteria, 1, 5));
         for(int i = 0; i < path.length; i++) {
             System.out.println(path[i]);
         }
-        path = op.getPath(3, 1);
-        System.out.println(op.getResult(3, 1));
+        path = op.getPath(testCriteria, 3, 1);
+        System.out.println(op.getResult(testCriteria, 3, 1));
         for(int i = 0; i < path.length; i++) {
             System.out.println(path[i]);
         }
     }
 
     private String createTestInput() {
-        String result = "1" + newLine;
-        result += "TIME" + newLine;
-        result += "6" + newLine;
-        result += "one 1 1" + newLine;
-        result += "two 2 2" + newLine;
-        result += "three 3 3" + newLine;
-        result += "four 4 4" + newLine;
-        result += "five 3 3" + newLine;
-        result += "six 4 4" + newLine;
-        result += "8" + newLine;
-        result += "1 3 100" + newLine;
-        result += "2 3 5" + newLine;
-        result += "1 5 50" + newLine;
-        result += "1 6 10" + newLine;
-        result += "2 4 5" + newLine;
-        result += "4 5 5" + newLine;
-        result += "2 6 10" + newLine;
-        result += "1 2 200" + newLine;
+        File f = new File(testPath + source);
+        String result = "";
+        try {
+            Scanner sc = new Scanner(f);
+            while(sc.hasNextLine()) {
+                result += sc.nextLine() + newLine;
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FWAlgorithmTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+//        String result = "1" + newLine;
+//        result += "TIME" + newLine;
+//        result += "6" + newLine;
+//        result += "one 1 1" + newLine;
+//        result += "two 2 2" + newLine;
+//        result += "three 3 3" + newLine;
+//        result += "four 4 4" + newLine;
+//        result += "five 3 3" + newLine;
+//        result += "six 4 4" + newLine;
+//        result += "8" + newLine;
+//        result += "1 3 100" + newLine;
+//        result += "2 3 5" + newLine;
+//        result += "1 5 50" + newLine;
+//        result += "1 6 10" + newLine;
+//        result += "2 4 5" + newLine;
+//        result += "4 5 5" + newLine;
+//        result += "2 6 10" + newLine;
+//        result += "1 2 200" + newLine;
+        System.out.println(result);
         return result;
     }
 

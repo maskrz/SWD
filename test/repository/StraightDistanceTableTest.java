@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package structures;
+package repository;
 
 import junit.framework.Assert;
 import org.junit.AfterClass;
@@ -15,9 +15,9 @@ import org.junit.Test;
  *
  * @author Skrzypek
  */
-public class CriteriaTest {
+public class StraightDistanceTableTest {
 
-    public CriteriaTest() {
+    public StraightDistanceTableTest() {
     }
 
     @BeforeClass
@@ -28,18 +28,13 @@ public class CriteriaTest {
     public static void tearDownClass() {
     }
 
-    /**
-     * Test of addCrtieria method, of class Criteria.
-     */
     @Test
-    public void testAddCrtieria() {
-        System.out.println("addCrtieria");
-        Criteria instance = new Criteria();
-        instance.addCrtieria("TIME");
-        instance.addCrtieria("DISTANCE");
-
-        Assert.assertEquals(2, instance.size());
-        Assert.assertEquals("TIME", instance.criteria.get(0));
+    public void constructorTest() {
+        StraightDistanceTable sdt = new StraightDistanceTable();
+        Assert.assertEquals(0.0, sdt.getDistanceBeetwenPoints(5, 5));
+        Assert.assertEquals(237.5, sdt.getDistanceBeetwenPoints(1, 0));
+        Assert.assertEquals(237.5, sdt.getDistanceBeetwenPoints(0, 1));
+        Assert.assertEquals(308.0, sdt.getDistanceBeetwenPoints(14, 12));
     }
 
 }

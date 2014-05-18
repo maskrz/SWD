@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algorithm;
+package helpers;
 
+import algorithm.FWAlgorithm;
 import structures.Link;
 
 /**
@@ -26,10 +27,10 @@ public class AlgorithmInitializer {
         this.intermediateNodesTable = intermediateNodesTable;
     }
 
-    public void initializeTables() {
+    public void initializeTables(String criteria) {
         initializePathsTable();
         initializeIntermediateNodesTable();
-        initializeGraphValues();
+        initializeGraphValues(criteria);
     }
 
     private void initializePathsTable() {
@@ -52,19 +53,19 @@ public class AlgorithmInitializer {
         }
     }
 
-    private void initializeGraphValues() {
+    private void initializeGraphValues(String criteria) {
         for (Link link : fwa.graph.getLinks()) {
-            putValueIntoTables(link);
+            putValueIntoTables(link, criteria);
         }
     }
 
-    private void putValueIntoTables(Link link) {
+    private void putValueIntoTables(Link link, String criteria) {
         int minIndex = link.getNodesIndices().get(0);
         int maxIndex = link.getNodesIndices().get(1);
-        pathsTable[minIndex - 1][maxIndex - 1] = link.getValues().get(fwa.criteria);
+        pathsTable[minIndex - 1][maxIndex - 1] = link.getValues().get(criteria);
         intermediateNodesTable[minIndex - 1][maxIndex - 1] = minIndex;
 
-        pathsTable[maxIndex - 1][minIndex - 1] = link.getValues().get(fwa.criteria);
+        pathsTable[maxIndex - 1][minIndex - 1] = link.getValues().get(criteria);
         intermediateNodesTable[maxIndex - 1][minIndex - 1] = maxIndex;
     }
 }
