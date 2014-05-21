@@ -34,8 +34,7 @@ public class FWAlgorithm {
     }
 
     public void doAlgorithm(String criteria) {
-        AlgorithmInitializer algorithmInitializer = new AlgorithmInitializer(this,
-                pathsTable, intermediateNodesTable);
+        AlgorithmInitializer algorithmInitializer = new AlgorithmInitializer(this);
         algorithmInitializer.initializeTables(criteria);
         for (Node u : graph.getNodes()) {
             for (Node v1 : graph.getNodes()) {
@@ -76,13 +75,21 @@ public class FWAlgorithm {
     }
 
     private void addResultToContainer(String criteria) {
-        double[][] tempPathsTable = pathsTable.clone();
-        int[][] tempIntermediateNodesTable = intermediateNodesTable.clone();
+        double[][] tempPathsTable = pathsTable;
+        int[][] tempIntermediateNodesTable = intermediateNodesTable;
         resultsContainer.addResult(criteria, tempPathsTable, tempIntermediateNodesTable);
     }
 
     public ResultsContainer getResultsContainer() {
         return resultsContainer;
+    }
+
+    public void setPathsTable(double[][] pathsTable) {
+        this.pathsTable = pathsTable;
+    }
+
+    public void setIntermediateNodesTableTable(int[][] intermediateNodesTable) {
+        this.intermediateNodesTable = intermediateNodesTable;
     }
 
 }

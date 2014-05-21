@@ -19,18 +19,21 @@ public class AlgorithmInitializer {
     private double[][] pathsTable;
     private int[][] intermediateNodesTable;
 
-    public AlgorithmInitializer(FWAlgorithm fwAlgorithm, double[][] pathsTable,
-            int[][] intermediateNodesTable) {
+    public AlgorithmInitializer(FWAlgorithm fwAlgorithm) {
         this.fwa = fwAlgorithm;
         this.nodesAmount = fwa.nodesAmount;
-        this.pathsTable = pathsTable;
-        this.intermediateNodesTable = intermediateNodesTable;
+        this.pathsTable = new double[nodesAmount][nodesAmount];
+        this.intermediateNodesTable = new int[nodesAmount][nodesAmount];
     }
 
     public void initializeTables(String criteria) {
+        //pathsTable = new double[nodesAmount][nodesAmount];
+        //intermediateNodesTable = new int[nodesAmount][nodesAmount];
         initializePathsTable();
         initializeIntermediateNodesTable();
         initializeGraphValues(criteria);
+        fwa.setPathsTable(this.pathsTable);
+        fwa.setIntermediateNodesTableTable(this.intermediateNodesTable);
     }
 
     private void initializePathsTable() {
