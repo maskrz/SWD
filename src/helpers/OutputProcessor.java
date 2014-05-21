@@ -47,6 +47,9 @@ public class OutputProcessor {
         System.out.println(printIntermediateNodesTable(criteria));
     }
 
+    public double getResultOfPath(String criteria, int[] path) {
+        return resultsContainer.getResultOfPath(criteria, path);
+    }
 
     // to test!
 //    public void setIntermediateNodes(int[][] intermediates) {

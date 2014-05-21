@@ -104,4 +104,16 @@ public class ResultsContainer {
     public SingleResult getSingleResult(String criteria) {
         return results.get(criteria);
     }
+
+    public double getResultOfPath(String criteria, int[] path) {
+        int actuall = path[0];
+        int next = path[1];
+        double result = getResult(criteria, actuall, next);
+        for (int i = 2; i < path.length; i++) {
+            actuall = next;
+            next = i;
+            result += getResult(criteria, actuall, next);
+        }
+        return result;
+    }
 }

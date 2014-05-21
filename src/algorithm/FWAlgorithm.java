@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package algorithm;
 
 import helpers.AlgorithmInitializer;
@@ -18,7 +17,7 @@ import structures.Node;
  * @author Skrzypek
  */
 public class FWAlgorithm {
-    
+
     public final int nodesAmount;
     public Graph graph;
     private double[][] pathsTable;
@@ -47,8 +46,8 @@ public class FWAlgorithm {
     }
 
     public void doAlgorithm() {
-        ArrayList<String> criteria= graph.getCrtieria();
-        for(String c : criteria) {
+        ArrayList<String> criteria = graph.getCrtieria();
+        for (String c : criteria) {
             doAlgorithm(c);
         }
     }
@@ -64,8 +63,10 @@ public class FWAlgorithm {
     }
 
     private boolean shouldSwap(int ui, int v1i, int v2i) {
-        if (pathsTable[v1i][v2i] > pathsTable[v1i][ui] + pathsTable[ui][v2i]) {
-            return true;
+        if (v1i != v2i && v1i != ui && v2i != ui) {
+            if (pathsTable[v1i][v2i] > pathsTable[v1i][ui] + pathsTable[ui][v2i]) {
+                return true;
+            }
         }
         return false;
     }

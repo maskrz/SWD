@@ -47,6 +47,14 @@ public class FWAlgorithmIT {
         op.showResults("DISTANCE");
         System.out.println(Arrays.toString(op.getPath("TIME", 1, 2)));
         System.out.println(Arrays.toString(op.getPath("DISTANCE", 1, 2)));
+        int[] path = op.getPath("DISTANCE", 1, 2);
+        System.out.println(Arrays.toString(path));
+        System.out.println(op.getResultOfPath("DISTANCE", path));
+        System.out.println(op.getResultOfPath("TIME", path));
+        path = op.getPath("TIME", 1, 2);
+        System.out.println(Arrays.toString(path));
+        System.out.println(op.getResultOfPath("DISTANCE", path));
+        System.out.println(op.getResultOfPath("TIME", path));
 
         ResultsContainer rs = fwa.getResultsContainer();
         System.out.println(sameArray(rs.getSingleResult("TIME").getIntermediateNodesTable(),
